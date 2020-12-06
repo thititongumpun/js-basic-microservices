@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: posts-deployment
+  name: eventbus-deployment
 spec: 
   selector:
     matchLabels:
-      app: posts
+      app: eventbus
   replicas: 1
   template:
     metadata:
       labels:
-        app: posts
+        app: eventbus
     spec:
       containers:
-        - name: posts
-          image: thititongumpun/posts
+        - name: eventbus
+          image: thititongumpun/eventbus
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: posts-clusterip-service
+  name: eventbus-service
 spec:
   selector:
-    app: posts
+    app: eventbus
   ports:
-    - name: posts
+    - name: eventbus
       protocol: TCP
-      port: 4000
-      targetPort: 4000
+      port: 4005
+      targetPort: 4005
